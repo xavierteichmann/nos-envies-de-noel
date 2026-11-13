@@ -1,0 +1,16 @@
+{
+  "name": "nos-envies-de-noel",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "Listes de souhaits de la famille, avec réservations secrètes",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "liens": "node scripts/liens.mjs",
+    "test": "node scripts/test.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.0"
+  }
+}

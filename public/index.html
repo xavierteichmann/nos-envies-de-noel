@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F3B2E">
+<title>Listes de Noël</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sapin: #0F3B2E;
+  --sapin-clair: #1B5A45;
+  --neige: #F3F8F5;
+  --blanc: #FFFFFF;
+  --houx: #C4122F;
+  --houx-fonce: #9E0C24;
+  --laiton: #F0C24B;
+  --givre: #D5E5DD;
+  --encre: #12211B;
+  --encre-douce: #45574F;
+  --titre: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --texte: "Atkinson Hyperlegible", Verdana, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--neige);
+  color: var(--encre);
+  font: 400 1.2rem/1.5 var(--texte);
+}
+h1, h2 { font-family: var(--titre); line-height: 1.1; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 7vw, 3.2rem); font-weight: 800; }
+h2 { font-size: 1.55rem; font-weight: 800; margin-bottom: 0.9rem; }
+p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1:focus { outline: none; }
+:focus-visible { outline: 4px solid var(--laiton); outline-offset: 3px; }
+
+/* Bandeau du haut : la nuit de sapin, sous la neige */
+.bandeau {
+  background-color: var(--sapin);
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.45) 0 2px, transparent 2.5px),
+    radial-gradient(circle, rgba(255,255,255,.3) 0 1.5px, transparent 2px),
+    radial-gradient(circle, rgba(255,255,255,.16) 0 3px, transparent 3.5px);
+  background-size: 130px 110px, 90px 70px, 210px 170px;
+  background-position: 10px 14px, 50px 40px, 120px 80px;
+  color: var(--blanc);
+  padding: 1.4rem 1.25rem 3.2rem;
+}
+.bandeau > div, main { max-width: 60rem; margin: 0 auto; }
+.bandeau p { margin-top: 0.5rem; font-size: 1.25rem; color: #E4F0EA; max-width: 34rem; }
+.retour {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  min-height: 3.4rem; padding: 0 1.2rem 0 0.9rem; margin-bottom: 1.3rem;
+  font: 700 1.15rem var(--texte); color: var(--sapin);
+  background: var(--blanc); border: 0; border-radius: 999px; cursor: pointer;
+}
+.retour svg { width: 1.4rem; height: 1.4rem; }
+
+main { padding: 0 1.25rem 4rem; margin-top: -1.9rem; }
+section { margin-top: 2.4rem; }
+section:first-child { margin-top: 0; }
+
+/* Les étiquettes cadeau : une par personne */
+.etiquettes { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 1.1rem; }
+.etiquettes li { filter: drop-shadow(0 6px 10px rgba(15,59,46,.22)); border-radius: 14px; }
+.etiquettes li:nth-child(odd) { transform: rotate(-1.2deg); }
+.etiquettes li:nth-child(even) { transform: rotate(1deg); }
+.etiquettes li:focus-within { outline: 4px solid var(--laiton); outline-offset: 5px; }
+.etiquette {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  width: 100%; min-height: 11rem; padding: 3.2rem 1.1rem 1.1rem;
+  border: 0; cursor: pointer; text-align: left; font: inherit;
+  clip-path: polygon(1.6rem 0, calc(100% - 1.6rem) 0, 100% 1.6rem, 100% 100%, 0 100%, 0 1.6rem);
+  border-radius: 0 0 14px 14px;
+  background: var(--fond); color: var(--plume);
+}
+.etiquette:focus-visible { outline: none; }
+.etiquette::before { /* le trou de l'étiquette et son œillet */
+  content: ""; position: absolute; top: 0.9rem; left: 50%; translate: -50% 0;
+  width: 1.1rem; height: 1.1rem; border-radius: 50%;
+  background: var(--neige); box-shadow: 0 0 0 0.3rem var(--oeillet);
+}
+.etiquette strong { font: 800 1.7rem/1.05 var(--titre); overflow-wrap: anywhere; }
+.etiquette span { display: block; margin-top: 0.35rem; font-size: 1.05rem; line-height: 1.3; }
+.t0 { --fond: var(--houx); --plume: #fff; --oeillet: rgba(255,255,255,.35); }
+.t1 { --fond: var(--blanc); --plume: var(--encre); --oeillet: var(--givre); }
+.t2 { --fond: var(--laiton); --plume: var(--encre); --oeillet: rgba(18,33,27,.18); }
+.t3 { --fond: var(--sapin-clair); --plume: #fff; --oeillet: rgba(255,255,255,.3); }
+.moi { --fond: var(--blanc); --plume: var(--encre); --oeillet: var(--laiton); min-height: 0; padding-top: 3.4rem; }
+@media (min-width: 40rem) {
+  .bandeau > div, main { max-width: 46rem; }
+  .etiquettes { grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+}
+.etiquettes.seule { grid-template-columns: minmax(0, 26rem); }
+.etiquettes.seule li { transform: none; }
+
+/* Les idées d'une liste */
+.idees { display: grid; gap: 0.9rem; }
+.idee {
+  display: grid; gap: 0.9rem; align-items: center;
+  padding: 1.1rem 1.2rem; background: var(--blanc);
+  border-radius: 14px; border: 2px solid var(--givre);
+}
+.idee h3 { margin: 0; font: 700 1.35rem/1.25 var(--texte); overflow-wrap: anywhere; }
+.idee .precision { color: var(--encre-douce); overflow-wrap: anywhere; }
+.idee .etat { font-weight: 700; }
+@media (min-width: 40rem) { .idee { grid-template-columns: 1fr auto; } }
+/* Déjà pris : le cadeau est emballé */
+.idee.pris {
+  border-color: transparent;
+  background: repeating-linear-gradient(135deg, #E3EEE8 0 14px, #D5E5DD 14px 28px);
+}
+.idee.pris h3 { color: var(--encre-douce); }
+/* C'est moi qui l'offre : un ruban */
+.idee.amoi { border-color: var(--houx); box-shadow: inset 0.6rem 0 0 var(--houx); padding-left: 1.8rem; }
+.idee.amoi .etat { color: var(--houx-fonce); }
+
+.bouton {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3.6rem; padding: 0.6rem 1.5rem; width: 100%;
+  font: 700 1.2rem var(--texte); text-align: center;
+  border-radius: 12px; border: 2px solid transparent; cursor: pointer;
+  background: var(--houx); color: #fff;
+}
+.bouton:hover { background: var(--houx-fonce); }
+.bouton.discret { background: var(--blanc); color: var(--encre); border-color: var(--encre); }
+.bouton.discret:hover { background: var(--givre); }
+.bouton.vert { background: var(--sapin); }
+.bouton.vert:hover { background: var(--sapin-clair); }
+.bouton small { display: block; font-weight: 400; font-size: 1rem; }
+.bouton.double { flex-direction: column; }
+@media (min-width: 40rem) { .idee .bouton { width: auto; min-width: 13rem; } }
+
+/* Formulaire "Ma liste" */
+.carte { background: var(--blanc); border-radius: 14px; padding: 1.3rem 1.2rem; border: 2px solid var(--givre); }
+form { display: grid; gap: 1rem; }
+label { display: grid; gap: 0.35rem; font-weight: 700; }
+label small { font-weight: 400; color: var(--encre-douce); font-size: 1.05rem; }
+input[type="text"] {
+  width: 100%; min-height: 3.6rem; padding: 0.6rem 0.9rem;
+  font: 400 1.25rem var(--texte); color: var(--encre);
+  border: 2px solid var(--encre-douce); border-radius: 12px; background: var(--blanc);
+}
+.vide { padding: 1.2rem; border: 2px dashed #9DB5AA; border-radius: 14px; color: var(--encre-douce); }
+
+/* Avis : une idée que j'avais réservée a été retirée */
+.avis { background: #FFF6D9; border: 2px solid var(--laiton); border-radius: 14px; padding: 1.1rem 1.2rem; display: grid; gap: 0.9rem; }
+.avis + .avis { margin-top: 0.9rem; }
+
+.joffre li { display: grid; padding: 0.9rem 0; border-bottom: 2px solid var(--givre); }
+.joffre a { color: var(--encre); text-decoration: none; display: grid; gap: 0.1rem; }
+.joffre a span { color: var(--encre-douce); font-size: 1.05rem; }
+.joffre a b { font-size: 1.3rem; text-decoration: underline; text-decoration-color: var(--houx); text-underline-offset: 0.2em; text-decoration-thickness: 2px; overflow-wrap: anywhere; }
+
+dialog {
+  width: min(30rem, calc(100vw - 2rem)); border: 0; border-radius: 18px; padding: 1.5rem 1.3rem;
+  color: var(--encre); background: var(--blanc); box-shadow: 0 20px 60px rgba(15,59,46,.45);
+}
+dialog::backdrop { background: rgba(15,59,46,.7); }
+dialog h2 { font-size: 1.6rem; overflow-wrap: anywhere; }
+dialog p { margin-bottom: 1.2rem; }
+dialog .choix { display: grid; gap: 0.8rem; }
+
+.message {
+  position: fixed; left: 50%; bottom: 1.2rem; translate: -50% 0; z-index: 10;
+  width: min(30rem, calc(100vw - 2rem)); padding: 1rem 1.2rem;
+  background: var(--encre); color: #fff; border-radius: 12px; font-weight: 700; text-align: center;
+}
+.message:empty { display: none; }
+
+/* Un seul mouvement : les étiquettes se posent à l'ouverture */
+@media (prefers-reduced-motion: no-preference) {
+  .pose .etiquette { animation: pose .5s cubic-bezier(.2,.9,.3,1.3) backwards; animation-delay: calc(var(--i) * 60ms); }
+  @keyframes pose { from { opacity: 0; transform: translateY(-14px) rotate(-5deg); } }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<dialog id="dlg" aria-labelledby="dlg-titre"></dialog>
+<div class="message" id="message" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const app = document.getElementById('app');
+const dlg = document.getElementById('dlg');
+const messageBox = document.getElementById('message');
+
+// La clé personnelle arrive dans le lien (?k=...). On la garde aussi en mémoire
+// sur l'appareil, pour que l'adresse simple continue de fonctionner ensuite.
+let key = new URLSearchParams(location.search).get('k');
+try { if (key) localStorage.setItem('cle', key); else key = localStorage.getItem('cle'); } catch (e) {}
+
+let state = null;
+let lastJson = '';
+let firstPaint = true;
+let currentRoute = null;
+
+// Petit outil pour construire l'écran. Tout texte passe par ici en tant que texte,
+// jamais en tant que code : ce que quelqu'un écrit dans sa liste ne peut rien casser.
+function h(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props || {})) {
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const kid of kids.flat()) {
+    if (kid == null || kid === false) continue;
+    e.append(kid.nodeType ? kid : document.createTextNode(String(kid)));
+  }
+  return e;
+}
+const de = (name) => (/^[aeiouyéèh]/i.test(name) ? "d'" : 'de ') + name;
+const idees = (n) => n + (n > 1 ? ' idées' : ' idée');
+
+async function api(path, body) {
+  const r = await fetch(path, {
+    method: body ? 'POST' : 'GET',
+    headers: Object.assign({ 'x-cle': key || '' }, body ? { 'content-type': 'application/json' } : {}),
+    body: body ? JSON.stringify(body) : undefined,
+    cache: 'no-store',
+  });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw Object.assign(new Error(j.message || 'Erreur'), { status: r.status });
+  return j;
+}
+
+let messageTimer;
+function say(text) {
+  messageBox.textContent = text;
+  clearTimeout(messageTimer);
+  messageTimer = setTimeout(() => { messageBox.textContent = ''; }, 6000);
+}
+
+function setState(s) {
+  state = s;
+  lastJson = JSON.stringify(s);
+  render();
+}
+
+async function load() {
+  if (!key) return screenProblem('Ce lien est incomplet', 'Ouvre le lien personnel que tu as reçu. Si tu ne le retrouves pas, demande qu’on te le renvoie.');
+  try { setState(await api('/api/state')); }
+  catch (e) {
+    if (e.status === 401) screenProblem('Ce lien ne fonctionne pas', 'Demande qu’on te renvoie ton lien personnel.');
+    else screenProblem('Les listes ne se chargent pas', 'Vérifie ta connexion à Internet, puis réessaie.', true);
+  }
+}
+
+// Mise à jour silencieuse (toutes les 30 secondes et au retour sur la page),
+// sans jamais interrompre quelqu'un qui est en train d'écrire ou de choisir.
+async function refresh() {
+  if (!state || dlg.open || document.hidden) return;
+  const a = document.activeElement;
+  if (a && a.tagName === 'INPUT') return;
+  try {
+    const s = await api('/api/state');
+    if (JSON.stringify(s) !== lastJson) setState(s);
+  } catch (e) {}
+}
+
+async function send(body) {
+  try {
+    const r = await api('/api/action', body);
+    setState(r.state);
+    if (r.message) say(r.message);
+    return !r.message;
+  } catch (e) {
+    say('Cela n’a pas fonctionné. Vérifie ta connexion, puis réessaie.');
+    return false;
+  }
+}
+
+// Fenêtre de choix : renvoie la valeur du bouton choisi, ou null si on referme.
+function ask(title, text, choices) {
+  return new Promise((resolve) => {
+    dlg.replaceChildren(
+      h('h2', { id: 'dlg-titre' }, title),
+      h('p', {}, text),
+      h('div', { class: 'choix' }, choices.map((c) =>
+        h('button', { class: 'bouton double ' + (c.kind || ''), type: 'button', onclick: () => dlg.close(c.value) },
+          c.label, c.hint && h('small', {}, c.hint)))),
+    );
+    dlg.returnValue = '';
+    dlg.onclose = () => resolve(dlg.returnValue || null);
+    dlg.showModal();
+  });
+}
+dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(''); });
+
+function screenProblem(title, text, retry) {
+  app.replaceChildren(
+    h('header', { class: 'bandeau' }, h('div', {}, h('h1', {}, title))),
+    h('main', {}, h('div', { class: 'carte' }, h('p', {}, text),
+      retry && h('p', { style: 'margin-top:1rem' }, h('button', { class: 'bouton vert', type: 'button', onclick: load }, 'Réessayer')))),
+  );
+}
+
+function route() {
+  const m = location.hash.match(/^#\/liste\/([a-z0-9-]+)$/);
+  return m && state.people.some((p) => p.id === m[1]) ? m[1] : null;
+}
+
+function render() {
+  if (!state) return;
+  const who = route();
+  const changed = who !== currentRoute || firstPaint;
+  currentRoute = who;
+  if (who === null) renderHome();
+  else if (who === state.me.id) renderMine();
+  else renderOther(state.people.find((p) => p.id === who));
+  if (changed && !firstPaint) {
+    window.scrollTo(0, 0);
+    const h1 = app.querySelector('h1');
+    if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
+  }
+  firstPaint = false;
+}
+
+const backButton = () => h('button', { class: 'retour', type: 'button', onclick: () => { location.hash = ''; } },
+  svgArrow(), 'Toutes les listes');
+function svgArrow() {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = '<path d="M14 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+  return s;
+}
+
+function tag(person, cls, lines, i) {
+  return h('li', {}, h('button', { class: 'etiquette ' + cls, type: 'button', style: '--i:' + i,
+    onclick: () => { location.hash = '#/liste/' + person.id; } },
+    h('strong', {}, person.id === state.me.id ? 'Ma liste' : person.name),
+    lines.map((l) => h('span', {}, l))));
+}
+
+function renderHome() {
+  const me = state.me;
+  const mine = state.lists[me.id];
+  const others = state.people.filter((p) => p.id !== me.id);
+  const gifts = [];
+  for (const p of others) for (const it of state.lists[p.id]) if (it.status === 'mine') gifts.push({ p, it });
+
+  app.replaceChildren(
+    h('header', { class: 'bandeau' }, h('div', {},
+      h('h1', {}, 'Bonjour ' + me.name),
+      h('p', {}, 'Choisis une étiquette pour voir une liste de Noël.'))),
+    h('main', { class: firstPaint ? 'pose' : '' },
+      state.notices.length > 0 && h('section', {}, state.notices.map((n) =>
+        h('div', { class: 'avis' },
+          h('p', {}, h('b', {}, n.ownerName + ' a retiré « ' + n.title + ' » de sa liste. '),
+            'Tu l’avais réservé : inutile de l’acheter.'),
+          h('button', { class: 'bouton discret', type: 'button', onclick: () => send({ type: 'dismiss', id: n.id }) }, 'J’ai compris')))),
+      h('section', {},
+        h('ul', { class: 'etiquettes seule' },
+          tag(me, 'moi', [mine.length ? idees(mine.length) + ' dans ma liste' : 'Écris ici ce qui te ferait plaisir'], 0))),
+      h('section', {},
+        h('h2', {}, 'À qui veux-tu faire plaisir ?'),
+        h('ul', { class: 'etiquettes' }, others.map((p, i) => {
+          const l = state.lists[p.id];
+          const free = l.filter((x) => x.status === 'free').length;
+          const lines = !l.length ? ['Pas encore d’idées']
+            : [idees(l.length), free ? (free > 1 ? free + ' encore libres' : '1 encore libre') : 'Tout est déjà pris'];
+          return tag(p, 't' + (i % 4), lines, i + 1);
+        }))),
+      gifts.length > 0 && h('section', {},
+        h('h2', {}, 'Ce que j’offre'),
+        h('ul', { class: 'joffre' }, gifts.map(({ p, it }) =>
+          h('li', {}, h('a', { href: '#/liste/' + p.id }, h('span', {}, 'Pour ' + p.name), h('b', {}, it.title)))))),
+    ),
+  );
+}
+
+function renderOther(p) {
+  const list = state.lists[p.id];
+  app.replaceChildren(
+    h('header', { class: 'bandeau' }, h('div', {},
+      backButton(),
+      h('h1', {}, 'La liste ' + de(p.name)),
+      h('p', {}, p.name + ' ne voit jamais qui offre quoi.'))),
+    h('main', {},
+      !list.length
+        ? h('p', { class: 'vide carte' }, p.name + ' n’a pas encore écrit d’idées. Reviens un peu plus tard.')
+        : h('ul', { class: 'idees' }, list.map((it) => {
+          const text = h('div', {}, h('h3', {}, it.title), it.detail && h('p', { class: 'precision' }, it.detail));
+          if (it.status === 'taken') {
+            return h('li', { class: 'idee pris' }, text,
+              h('p', { class: 'etat' }, it.by ? 'Déjà pris par ' + it.by : 'Déjà pris'));
+          }
+          if (it.status === 'mine') {
+            text.append(h('p', { class: 'etat' }, it.anon ? 'C’est toi qui l’offres, en secret' : 'C’est toi qui l’offres'));
+            return h('li', { class: 'idee amoi' }, text,
+              h('button', { class: 'bouton discret', type: 'button', onclick: () => cancel(p, it) }, 'Je ne l’offre plus'));
+          }
+          return h('li', { class: 'idee' }, text,
+            h('button', { class: 'bouton', type: 'button', onclick: () => reserve(p, it) }, 'Je l’offre'));
+        })),
+    ),
+  );
+}
+
+async function reserve(p, it) {
+  const v = await ask('Tu offres « ' + it.title + ' » ?',
+    p.name + ' ne le saura pas. Les autres verront que ce cadeau est pris.', [
+      { label: 'Oui, avec mon prénom', hint: 'Les autres voient que c’est toi', value: 'nom' },
+      { label: 'Oui, en secret', hint: 'Personne ne sait que c’est toi', value: 'secret', kind: 'vert' },
+      { label: 'Non, je ne l’offre pas', value: '', kind: 'discret' },
+    ]);
+  if (!v) return;
+  if (await send({ type: 'reserve', id: it.id, anon: v === 'secret' })) say('C’est noté : tu offres « ' + it.title + ' ».');
+}
+
+async function cancel(p, it) {
+  const v = await ask('Tu n’offres plus « ' + it.title + ' » ?',
+    'Ce cadeau redeviendra libre pour les autres.', [
+      { label: 'Oui, je ne l’offre plus', value: 'oui' },
+      { label: 'Non, je le garde', value: '', kind: 'discret' },
+    ]);
+  if (v) send({ type: 'cancel', id: it.id });
+}
+
+function renderMine() {
+  const list = state.lists[state.me.id];
+  const title = h('input', { type: 'text', id: 'titre', name: 'titre', maxlength: '120', autocomplete: 'off', required: true });
+  const detail = h('input', { type: 'text', id: 'detail', name: 'detail', maxlength: '300', autocomplete: 'off' });
+  const form = h('form', { class: 'carte', onsubmit: async (e) => {
+    e.preventDefault();
+    const t = title.value.trim();
+    if (!t) return;
+    if (await send({ type: 'add', title: t, detail: detail.value })) say('« ' + t + ' » est dans ta liste.');
+  } },
+    h('label', { for: 'titre' }, 'Mon idée de cadeau', title),
+    h('label', { for: 'detail' }, h('span', {}, 'Une précision ', h('small', {}, '(facultatif : taille, couleur, magasin)')), detail),
+    h('button', { class: 'bouton vert', type: 'submit' }, 'Ajouter à ma liste'));
+
+  app.replaceChildren(
+    h('header', { class: 'bandeau' }, h('div', {},
+      backButton(),
+      h('h1', {}, 'Ma liste'),
+      h('p', {}, 'Écris ce qui te ferait plaisir. Tu ne verras pas qui offre quoi : c’est la surprise.'))),
+    h('main', {},
+      h('section', {}, form),
+      h('section', {},
+        h('h2', {}, 'Mes idées'),
+        !list.length
+          ? h('p', { class: 'vide' }, 'Ta liste est vide pour l’instant. Ajoute ta première idée juste au-dessus.')
+          : h('ul', { class: 'idees' }, list.map((it) =>
+            h('li', { class: 'idee' },
+              h('div', {}, h('h3', {}, it.title), it.detail && h('p', { class: 'precision' }, it.detail)),
+              h('button', { class: 'bouton discret', type: 'button', onclick: () => removeItem(it) }, 'Retirer'))))),
+    ),
+  );
+}
+
+async function removeItem(it) {
+  const v = await ask('Retirer « ' + it.title + ' » ?', 'Cette idée disparaîtra de ta liste.', [
+    { label: 'Oui, retirer', value: 'oui' },
+    { label: 'Non, la garder', value: '', kind: 'discret' },
+  ]);
+  if (v) send({ type: 'remove', id: it.id });
+}
+
+window.addEventListener('hashchange', render);
+document.addEventListener('visibilitychange', refresh);
+setInterval(refresh, 30000);
+load();
+</script>
+</body>
+</html>
